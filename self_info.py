@@ -1,7 +1,9 @@
 #here we define a function named as "self_info"
-from main import APP_ACCESS_TOKEN
-from main import BASE_URL
+APP_ACCESS_TOKEN = ' 2121110795.f566e63.45b3d45844144983bd2217db985ca244'
+BASE_URL = 'https://api.instagram.com/v1/'
 import requests
+
+
 
 def self_info():
     request_url = (BASE_URL + 'users/self/?access_token=%s') % (APP_ACCESS_TOKEN)
@@ -12,7 +14,7 @@ def self_info():
         if len(user_info['data']):
             print 'Username: %s' %(user_info['data']['username'])
             print 'Number of followers: %s' %(user_info['data']['counts']['followed_by'])
-            print 'No of people you are following: %s' %(user_info['data']['counts']['following'])
+            print 'Number of people you are following: %s' %(user_info['data']['counts']['follows'])
             print 'Number of posts %s' %(user_info['data']['counts']['media'])
         else:
             print 'User Does Not Exist'
