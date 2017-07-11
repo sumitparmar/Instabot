@@ -1,8 +1,9 @@
-#here we define a function named as "self_info"
+# *** here we define a function named as "self_info".***
+
 APP_ACCESS_TOKEN = ' 2121110795.f566e63.45b3d45844144983bd2217db985ca244'
 BASE_URL = 'https://api.instagram.com/v1/'
 import requests
-
+import urllib
 
 
 def self_info():
