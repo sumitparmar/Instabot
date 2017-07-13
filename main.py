@@ -14,10 +14,9 @@ from termcolor import colored
 #   <-------------------------InstaBot Application Starts From Here------------------------>
 
 
-list=['grey','red','green','yellow','blue','magenta','cyan']
-color_text =  colored("\n\t\t\t\t\t<------------****||$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$||*****------------>",list[1])
-color_text2 = colored("\n\t\t\t\t\t<------------****||Welcome To InstaBot Application||*****------------>",list[4])
-color_text3 = colored("\n\t\t\t\t\t<------------****||$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$||*****------------>\n",list[6])
+color_text =  colored("\n\t\t\t\t\t<------------****||$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$||*****------------>",'blue')
+color_text2 = colored("\n\t\t\t\t\t<------------****||Welcome To InstaBot Application||*****------------>",'green')
+color_text3 = colored("\n\t\t\t\t\t<------------****||$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$||*****------------>\n",'red')
 print color_text,color_text2,color_text3
 
 
@@ -39,15 +38,8 @@ i=0
 
 show_menu = True
 while show_menu:        #if user enter valid key
-    while i < 7:
-        color_text = colored(menu_choices, list[i])
-        if i == 6:
-            i = 0
-        i = i + 1
-        print color_text
-        break
 
-    menu_choice = input()
+    menu_choice = raw_input(menu_choices)
     if (menu_choice) > 0:
         menu_choice = int(menu_choice)
 

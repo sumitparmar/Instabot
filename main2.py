@@ -2,7 +2,7 @@ import requests, urllib
 from textblob import TextBlob
 from textblob.sentiments import NaiveBayesAnalyzer
 
-APP_ACCESS_TOKEN = '2121110795.f566e63.45b3d45844144983bd2217db985ca244'
+APP_ACCESS_TOKEN = '2121110795.18f49b6.01ec923fb3fd4f3bab2327368fd4e839'
 #Token Owner : AVinstaBot.main
 #Sandbox Users : AVinstaBot.test0, AVinstaBot.test1, AVinstaBot.test2...... AVinstaBot.test10
 
