@@ -1,86 +1,116 @@
-# *** this is my main file.***
 
-APP_ACCESS_TOKEN = ' 2121110795.f566e63.45b3d45844144983bd2217db985ca244'
-BASE_URL = 'https://api.instagram.com/v1/'
-import requests
-import urllib
-from textblob import TextBlob
-from textblob.sentiments import NaiveBayesAnalyzer
-
-#*** here we import the functions and call them where required..***
-
-from self_info import self_info
-from get_user_info import get_user_info
-from get_user_id import get_user_id
-from get_post_id import  get_post_id
-from like_a_post import  like_a_post
 from get_user_post import get_user_post
-from post_a_comment import  post_a_comment
-from delete_neg_comment import  delete_negative_comment
-from  get_own_post import get_own_post
+from get_own_post import get_own_post
+from get_user_info import get_user_info
+from like_a_post import like_user_post
+from post_a_comment import comment_user_post1
+from self_info import self_info
+from delete_neg_comment import delete_negative_comment
+from show_all_user_post_comment import show_all_comment
+import sys
+from termcolor import colored
 
 
-# *** here we define the fuction stat_bot in which we have provided the choices.***
+#   <-------------------------InstaBot Application Starts From Here------------------------>
 
-def start_bot():
-    while True:
 
-        print '\n'
-        # *** here this will print the welcome message. ***
-        print 'Hey! Welcome to instaBot!'
-        # *** thus will provide the menu options for the user.***
-        print 'Here are your menu options:'
-        # *** this will give the user his own post.***
-        print "1.Get your own details\n"
-        # *** this will provide the user details with username.***
-        print "2.Get details of a user by username\n"
-        # ***this will give you your own post.***
-        print "3.Get your own recent post\n"
-        # *** this will provide the recent post of the user by username.***
-        print "4.Get the recent post of a user by username\n"
-        # *** this will give you the list of the user who had liked your post.***
-        print "5.Get a list of people who have liked the recent post of a user\n"
-        # ***
-        print "6.Like the recent post of a user\n"
-        # *** this will give you the list of comments of the user on the recent post.***
-        print "7.Get a list of comments on the recent post of a user\n"
-        # here we will make our comment on the recent post of the user.***
-        print "8.Make a comment on the recent post of a user\n"
-        #this will delete the negative comments from the recent post of the user.***
-        print "9.Delete negative comments from the recent post of a user\n"
-        # *** here we exit the program. ***
-        print "10.Exit"
+list=['grey','red','green','yellow','blue','magenta','cyan']
+color_text =  colored("\n\t\t\t\t\t<------------****||$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$||*****------------>",list[1])
+color_text2 = colored("\n\t\t\t\t\t<------------****||Welcome To InstaBot Application||*****------------>",list[4])
+color_text3 = colored("\n\t\t\t\t\t<------------****||$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$||*****------------>\n",list[6])
+print color_text,color_text2,color_text3
 
-        choice = raw_input("Enter you choice: ")
-        if choice == "1":
+
+# Ask What you Want to do
+menu_choices = "What do you want to do. Select from the below Choices (1-6)" \
+               "\n\n\t\t1. Show Own Profile Info " \
+               "\n\t\t2. Download Own Post " \
+               "\n\t\t3. Get User's Profile Information. " \
+               "\n\t\t4. Download User's Recent Post " \
+               "\n\t\t5. Like User's Recent Post" \
+               "\n\t\t6. Comment on User's Recent Post " \
+               "\n\t\t7. Show Comments From User's Recent Post " \
+               "\n\t\t8. Delete Negative Comments From User's Recent Post " \
+               "\n\t\t9. Close Application  "
+
+
+
+i=0
+
+show_menu = True
+while show_menu:        #if user enter valid key
+    while i < 7:
+        color_text = colored(menu_choices, list[i])
+        if i == 6:
+            i = 0
+        i = i + 1
+        print color_text
+        break
+
+    menu_choice = input()
+    if (menu_choice) > 0:
+        menu_choice = int(menu_choice)
+
+        if menu_choice == 1:
+            # Control Goes to self_info.py
             self_info()
-        elif choice == "2":
-            insta_username = raw_input("Enter the username of the user: ")
-            get_user_info(insta_username)
-        elif choice == "3":
+            print("\n\n")
+
+        elif menu_choice == 2:
+            print ("\n\t$$$$$ Downloading Your Own Recent Post.....\n")
+            # Control Goes to get_own_post.py
             get_own_post()
-        elif choice == "4":
-            insta_username = raw_input("Enter the username of the user: ")
+            print("\n")
+
+        elif menu_choice == 3:
+            insta_username = raw_input("\nEnter The Username Who's Information You Want. \n")
+            print("\t\tWait ** Information is Downloading...\n")
+            # Control Goes to get_user_info.py
+            get_user_info(insta_username)
+            print("\n")
+
+        elif menu_choice == 4:
+            insta_username = raw_input("\nEnter The Username Who's Recent Post You Want To Download. \n")
+            print("\t\tWait ** User's Recent Post is Downloading...")
+            # Control Goes to get_user_post.py
             get_user_post(insta_username)
-        elif choice=="5":
-           insta_username = raw_input("Enter the username of the user: ")
-           get_like_list(insta_username)
-        elif choice=="6":
-           insta_username = raw_input("Enter the username of the user: ")
-           like_a_post(insta_username)
-        elif choice=="7":
-           insta_username = raw_input("Enter the username of the user: ")
-           get_comment_list(insta_username)
-        elif choice=="8":
-           insta_username = raw_input("Enter the username of the user: ")
-           post_a_comment(insta_username)
-        elif choice=="9":
-           insta_username = raw_input("Enter the username of the user: ")
-           delete_negative_comment(insta_username)
-        elif choice == "10":
+            print("\n")
+
+        elif menu_choice == 5:
+            insta_username = raw_input("Enter The Username Who's Recent Post You Want To Like. ")
+            print("Wait ** Liking The User's Recent Post...")
+            # Control Goes to like_user_post.py
+            like_user_post(insta_username)
+            print("\n")
+
+        elif menu_choice == 6:
+            insta_username = raw_input("\nEnter The Username Who's Recent Post You Want To Write Something. \n")
+            print("\t\tWait ** Commenting in the User's Recent Post...")
+            # Control Goes to comment_user_post.py
+            comment_user_post1(insta_username)
+            print("\n")
+
+        elif menu_choice == 7:
+            insta_username = raw_input("\nEnter The Username Who's Recent Post's Comments You Want to Show \n")
+            print("\t\tWait ** Fetching the User's Recent Comment...")
+            # Control Goes to show_all_user_comment.py
+            show_all_comment(insta_username)
+            print("\n")
+
+        elif menu_choice == 8:
+            insta_username = raw_input("\nEnter The Username Who's Recent Post You Want To Delete Something. \n")
+            print("\t\tWait ** Deleting the User's Recent Comment...")
+            # Control Goes to delete_negative_comment.py
+            delete_negative_comment(insta_username)
+            print("\n")
+
+        elif menu_choice == 9:
+            print "\n\t\t<------------******Thanks To Be With Us*****------------>"
             exit()
+
         else:
-            print "wrong choice"
+            print "<------------*****Wrong Input*****------------>"
+            show_menu = False
 
-start_bot()
 
+#   <-------------------------InstaBot Application Ends Here------------------------>
